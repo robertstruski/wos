@@ -208,7 +208,7 @@ tr.hl td{background:var(--acc-soft)}
 .prog i{display:block;height:100%;background:var(--acc);transition:width .25s}
 .qcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
 .qcard .qtag{font:500 12px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.qcard .qq{font:600 25px/1.25 var(--f-display);margin:8px 0 16px}
+.qcard .qq{font:600 25px/1.25 var(--f-display);margin:8px 0 16px;white-space:pre-line}
 .opts{display:grid;gap:8px}
 .opt{text-align:left;border:1px solid var(--line);background:var(--panel2);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:16.5px;display:flex;gap:10px}
 .opt .L{font:500 13px var(--f-mono);color:var(--muted);padding-top:2px}
@@ -730,6 +730,17 @@ const IDEOLOGIE = [
     hasla: ["Elity w stolicy nie rozumieją problemów zwykłych ludzi."]
   }
 ];
+const PANSTWA_QUIZ = {
+  usa: ["prezydent jest jednocześnie głową państwa i szefem rządu", "prezydenta wybiera Kolegium Elektorów", "parlament (Kongres) składa się z Izby Reprezentantów i Senatu", "parlament nie może odwołać rządu w drodze wotum nieufności", "sędziowie Sądu Najwyższego są powoływani dożywotnio", "dwie główne partie: Demokratyczna i Republikańska", "federacja złożona z 50 stanów", "najstarsza obowiązująca konstytucja pisana na świecie", "prezydenta można usunąć tylko w procedurze impeachmentu"],
+  uk: ["głową państwa jest monarcha, który „panuje, ale nie rządzi”", "konstytucja nie jest spisana w jednym dokumencie", "parlament składa się z Izby Gmin i Izby Lordów", "opozycja tworzy gabinet cieni", "premierem zostaje lider partii, która ma większość w izbie niższej", "członkowie izby wyższej są mianowani, a nie wybierani", "posłów wybiera się w okręgach jednomandatowych — wygrywa ten, kto ma najwięcej głosów", "obowiązuje zasada suwerenności parlamentu"],
+  fr: ["prezydent jest wybierany w wyborach powszechnych, często w dwóch turach", "prezydent przewodniczy posiedzeniom rządu", "prezydent i premier mogą pochodzić z przeciwnych obozów (kohabitacja)", "zgodności ustaw z konstytucją pilnuje Rada Konstytucyjna", "parlament składa się ze Zgromadzenia Narodowego i Senatu", "prezydent może rozwiązać izbę niższą parlamentu", "obecny ustrój to V Republika"],
+  de: ["szefem rządu jest kanclerz", "szefa rządu można odwołać tylko przez konstruktywne wotum nieufności", "parlament składa się z Bundestagu i Bundesratu", "federacja 16 krajów związkowych", "Federalny Trybunał Konstytucyjny ma siedzibę w Karlsruhe", "prezydenta wybiera Zgromadzenie Federalne, a nie obywatele", "konstytucja nosi nazwę Ustawy Zasadniczej"],
+  it: ["prezydent jest wybierany na 7 lat przez parlament z udziałem delegatów regionów", "obie izby parlamentu mają równe uprawnienia", "rząd musi uzyskać zaufanie obu izb parlamentu", "byli prezydenci zostają senatorami dożywotnimi", "rządy zmieniają się bardzo często", "obywatele mogą w referendum uchylić obowiązującą ustawę", "republika powstała po referendum, w którym odrzucono monarchię"],
+  ch: ["rząd to kolegialna rada złożona z 7 członków", "prezydent państwa zmienia się co roku", "obywatele bardzo często głosują w ogólnokrajowych referendach", "100 tys. obywateli może zaproponować zmianę konstytucji", "państwo dzieli się na kantony", "państwo od wieków zachowuje neutralność", "parlament nie może odwołać rządu przed końcem kadencji"],
+  ru: ["prezydent jest wybierany na 6 lat", "izba niższa parlamentu nazywa się Dumą Państwową", "prezydent może rozwiązać izbę niższą, jeśli ta trzykrotnie odrzuci jego kandydata na premiera", "prezydent dominuje nad parlamentem, rządem i sądami", "opozycja jest marginalizowana, a niezależne media zamknięte", "izbę wyższą tworzą przedstawiciele podmiotów federacji", "prezydentowi bezpośrednio podlegają resorty siłowe"],
+  cn: ["konstytucja zapewnia kierowniczą rolę partii komunistycznej", "parlament liczy blisko 3000 deputowanych i zbiera się raz w roku", "przewodniczący państwa jest zwykle szefem jedynej rządzącej partii", "wobec Hongkongu obowiązuje zasada „jeden kraj, dwa systemy”", "realną władzę sprawuje Biuro Polityczne partii", "w gospodarce działa rynek, ale pod kontrolą partii"],
+  pl: ["parlament składa się z Sejmu (460 posłów) i Senatu (100 senatorów)", "prezydent jest wybierany w wyborach powszechnych na 5 lat", "weto prezydenta parlament może odrzucić większością 3/5 głosów", "Trybunał Konstytucyjny liczy 15 sędziów", "obowiązuje konstytucja z 1997 r.", "państwo dzieli się na 16 województw", "posłów wybiera się proporcjonalnie, a senatorów w okręgach jednomandatowych"]
+};
 const ORG_TYPY = ["uniwersalna", "polityczno-wojskowa", "europejska", "gospodarcza", "regionalna", "nieformalna"];
 
 const ORG = [
@@ -1487,9 +1498,10 @@ const G = {
     return pick(items,10).map(([c,n])=>mcq(`Który organ: ${c.charAt(0).toLowerCase()+c.slice(1)}?`, n, names, `To kompetencja organu: ${n}.`, "Ustrój RP"));
   },
   panstwo(dz){
-    const items=[]; PANSTWA.forEach(p=>{ p.cechy.forEach(c=>items.push([c,p.n])); items.push([`Konstytucja: ${p.konst}`,p.n]); items.push([`Parlament: ${p.parl}`,p.n]); });
-    const names=PANSTWA.map(p=>p.n);
-    return pick(items,10).map(([c,n])=>mcq(`Które państwo opisuje ta informacja? „${c}”`, n, names, `Chodzi o: ${n}.`, "Ustroje państw"));
+    const ids = Object.keys(PANSTWA_QUIZ);
+    const order = shuffle(ids).concat(pick(ids,1));
+    const name = id => PANSTWA.find(p=>p.id===id).n;
+    return order.slice(0,10).map(id=>{ const f=pick(PANSTWA_QUIZ[id],3); return mcq(`Które to państwo? Cechy jego ustroju:\n${f.map(x=>"• "+x).join("\n")}`, name(id), ids.filter(x=>x!==id).map(name), `To ${name(id)} — ${PANSTWA.find(p=>p.id===id).sys.toLowerCase()}.`, "Ustroje państw"); });
   },
   ideologia(dz){
     const FAM = { socjalizm:"lew", socjaldemokracja:"lew", komunizm:"lew", liberalizm:"lib", libertarianizm:"lib", konserwatyzm:"praw", chadecja:"praw", faszyzm:"tot", nazizm:"tot" };

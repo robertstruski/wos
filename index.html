@@ -618,7 +618,7 @@ const IDEOLOGIE = [
     hasla: ["Społeczeństwo to umowa między zmarłymi, żyjącymi i tymi, którzy dopiero się narodzą.", "Należy reformować to, co konieczne, ale zachowywać to, co sprawdzone przez wieki."]
   },
   {
-    id: "chadecja", n: "Chrześcijańska demokracja", rodz: "współczesne", x: 0.05, y: 0.4, kolor: "#3c6e91",
+    id: "chadecja", n: "Chrześcijańska demokracja", rodz: "współczesne", x: -0.2, y: 0.4, kolor: "#3c6e91",
     rdzen: "Polityka oparta na wartościach chrześcijańskich i katolickiej nauce społecznej: godność osoby ludzkiej, dobro wspólne, solidarność i pomocniczość.",
     panstwo: "Państwo demokratyczne, zdecentralizowane, działające zgodnie z zasadą pomocniczości.",
     gosp: "Społeczna gospodarka rynkowa — rynek połączony z ochroną słabszych i dialogiem pracodawców z pracownikami.",
@@ -678,15 +678,26 @@ const IDEOLOGIE = [
     hasla: ["Najważniejszy jest interes narodu, a nie wola obcych mocarstw czy instytucji międzynarodowych.", "Państwo powinno chronić narodową kulturę przed obcymi wpływami."]
   },
   {
-    id: "faszyzm", n: "Faszyzm i nazizm", rodz: "totalitarne", x: 0.25, y: 1, kolor: "#2b2b2b",
-    rdzen: "Totalitarne ideologie XX wieku: wszechwładne państwo (faszyzm) lub wspólnota rasowa (nazizm) ponad jednostką, kult wodza i przemocy.",
-    panstwo: "Państwo totalitarne, jedna partia, kult wodza (duce, führer), likwidacja demokracji i opozycji.",
-    gosp: "Korporacjonizm (faszyzm włoski), gospodarka podporządkowana celom państwa i wojny przy zachowaniu własności prywatnej.",
-    spol: "Antyliberalizm, antykomunizm, militaryzm; w nazizmie rasizm i antysemityzm prowadzące do ludobójstwa.",
-    mysl: [["Benito Mussolini", "faszyzm włoski"], ["Adolf Hitler", "nazizm (narodowy socjalizm)"]],
-    nurty: ["Faszyzm włoski", "Narodowy socjalizm (nazizm)"],
-    hasla: ["Wszystko w państwie, nic poza państwem, nic przeciw państwu."],
-    uwaga: "Konstytucja RP zakazuje partii odwołujących się do totalitarnych metod nazizmu, faszyzmu i komunizmu (art. 13)."
+    id: "faszyzm", n: "Faszyzm", rodz: "totalitarne", x: 0.4, y: 0.95, kolor: "#2b2b2b",
+    rdzen: "Ideologia totalitarna stworzona we Włoszech po I wojnie światowej. Najwyższą wartością jest wszechwładne państwo, któremu jednostka ma być całkowicie podporządkowana.",
+    panstwo: "Państwo totalitarne, rządy jednej partii, kult wodza (duce), likwidacja demokracji parlamentarnej i opozycji.",
+    gosp: "Korporacjonizm — pracodawcy i pracownicy zorganizowani w korporacje pod kontrolą państwa; zachowanie własności prywatnej przy silnym podporządkowaniu gospodarki celom państwa.",
+    spol: "Antyliberalizm i antykomunizm, militaryzm, kult siły, czynu i młodości, nacjonalizm odwołujący się do wielkości dawnego Rzymu.",
+    mysl: [["Benito Mussolini", "twórca faszyzmu, dyktator Włoch 1922–1943"], ["Giovanni Gentile", "filozof, współautor „Doktryny faszyzmu”"]],
+    nurty: ["Faszyzm włoski", "Ruchy faszystowskie w innych krajach (np. falangizm w Hiszpanii)"],
+    hasla: ["Wszystko w państwie, nic poza państwem, nic przeciw państwu.", "Wierzyć, słuchać, walczyć."],
+    uwaga: "W faszyzmie włoskim centrum jest państwo, a nie rasa — rasizm i antysemityzm nie były jego fundamentem, choć Mussolini wprowadził ustawy rasowe w 1938 r. pod wpływem sojuszu z Niemcami."
+  },
+  {
+    id: "nazizm", n: "Nazizm (narodowy socjalizm)", rodz: "totalitarne", x: -0.1, y: 1, kolor: "#4a1f1f",
+    rdzen: "Ideologia totalitarna stworzona w Niemczech przez Adolfa Hitlera. Jej podstawą jest rasizm: przekonanie o wyższości „rasy aryjskiej” i dążenie do zbudowania jednolitej rasowo wspólnoty narodu.",
+    panstwo: "Państwo totalitarne III Rzeszy, rządy jednej partii (NSDAP), zasada wodzostwa (führer), terror policji politycznej i obozy koncentracyjne.",
+    gosp: "Gospodarka podporządkowana państwu i przygotowaniom do wojny, przy zachowaniu własności prywatnej; konfiskata majątku Żydów.",
+    spol: "Rasizm i antysemityzm prowadzące do Holokaustu, teoria „przestrzeni życiowej” (Lebensraum) uzasadniająca podbój Europy Wschodniej, antykomunizm i antyliberalizm.",
+    mysl: [["Adolf Hitler", "„Mein Kampf”, przywódca III Rzeszy"], ["Alfred Rosenberg", "główny ideolog rasizmu nazistowskiego"]],
+    nurty: ["Narodowy socjalizm w III Rzeszy (1933–1945)", "Współczesny neonazizm"],
+    hasla: ["Jeden naród, jedna Rzesza, jeden wódz.", "Naród niemiecki potrzebuje przestrzeni życiowej na Wschodzie."],
+    uwaga: "Konstytucja RP zakazuje partii odwołujących się do totalitarnych metod nazizmu, faszyzmu i komunizmu, a propagowanie tych ustrojów jest w Polsce przestępstwem."
   },
   {
     id: "ekologizm", n: "Ekologizm", rodz: "współczesne", x: -0.45, y: -0.5, kolor: "#2e8b57",
@@ -719,7 +730,6 @@ const IDEOLOGIE = [
     hasla: ["Elity w stolicy nie rozumieją problemów zwykłych ludzi."]
   }
 ];
-
 const ORG_TYPY = ["uniwersalna", "polityczno-wojskowa", "europejska", "gospodarcza", "regionalna", "nieformalna"];
 
 const ORG = [
@@ -1482,7 +1492,7 @@ const G = {
     return pick(items,10).map(([c,n])=>mcq(`Które państwo opisuje ta informacja? „${c}”`, n, names, `Chodzi o: ${n}.`, "Ustroje państw"));
   },
   ideologia(dz){
-    const FAM = { socjalizm:"lew", socjaldemokracja:"lew", komunizm:"lew", liberalizm:"lib", libertarianizm:"lib", konserwatyzm:"praw", chadecja:"praw" };
+    const FAM = { socjalizm:"lew", socjaldemokracja:"lew", komunizm:"lew", liberalizm:"lib", libertarianizm:"lib", konserwatyzm:"praw", chadecja:"praw", faszyzm:"tot", nazizm:"tot" };
     const items=[]; IDEOLOGIE.forEach(i=>{ i.hasla.forEach(h=>items.push([`Hasło lub postulat: „${h}”`,i])); items.push([`Stosunek do gospodarki: ${i.gosp}`,i]); });
     return pick(items,10).map(([c,i])=>{ const wrongs=IDEOLOGIE.filter(x=>x.id!==i.id && !(FAM[i.id] && FAM[x.id]===FAM[i.id])).map(x=>x.n); return mcq(`Z którą ideologią się to wiąże? ${c}`, i.n, wrongs, `To ${i.n}.`, "Ideologie"); });
   },

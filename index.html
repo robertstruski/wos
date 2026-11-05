@@ -751,6 +751,86 @@ const IDEOLOGIE = [
   }
 ];
 
+// [dział, pytanie, poprawna, [3 błędne], wyjaśnienie]
+const LICZBY_Q = [
+  ["ustroj-rp","Ilu posłów liczy Sejm?","460",["450","560","400"],"Sejm liczy 460 posłów, a razem z Senatem (Zgromadzenie Narodowe) — 560 osób."],
+  ["ustroj-rp","Ilu senatorów liczy Senat?","100",["50","120","150"],"Senat liczy 100 senatorów wybieranych w 100 okręgach jednomandatowych."],
+  ["ustroj-rp","Ile trwa kadencja Sejmu i Senatu?","4 lata",["3 lata","5 lat","6 lat"],"Kadencja Sejmu i Senatu jest wspólna i trwa 4 lata."],
+  ["ustroj-rp","Ile trwa kadencja Prezydenta RP?","5 lat",["4 lata","6 lat","7 lat"],"Prezydent jest wybierany na 5 lat i może być wybrany ponownie tylko raz."],
+  ["ustroj-rp","Na ile lat wybierany jest sędzia Trybunału Konstytucyjnego?","9 lat",["6 lat","8 lat","10 lat"],"Sędziów TK wybiera Sejm na 9 lat, bez możliwości ponownego wyboru."],
+  ["ustroj-rp","Ile trwa kadencja Prezesa NIK?","6 lat",["4 lata","5 lat","9 lat"],"Prezesa NIK wybiera Sejm za zgodą Senatu na 6 lat."],
+  ["ustroj-rp","Jaki próg wyborczy do Sejmu obowiązuje komitet partii?","5%",["3%","7%","8%"],"Komitet partii musi zdobyć co najmniej 5% głosów w skali kraju; koalicja — 8%."],
+  ["ustroj-rp","Jaki próg wyborczy do Sejmu obowiązuje komitet koalicyjny?","8%",["5%","6%","10%"],"Koalicje muszą przekroczyć 8% głosów, partie — 5%."],
+  ["ustroj-rp","Od ilu lat można kandydować do Sejmu?","21 lat",["18 lat","25 lat","30 lat"],"Bierne prawo wyborcze do Sejmu przysługuje od 21 lat."],
+  ["ustroj-rp","Od ilu lat można kandydować do Senatu?","30 lat",["21 lat","25 lat","35 lat"],"Bierne prawo wyborcze do Senatu przysługuje od 30 lat."],
+  ["ustroj-rp","Od ilu lat można kandydować na Prezydenta RP?","35 lat",["30 lat","40 lat","45 lat"],"Kandydat na Prezydenta musi mieć ukończone 35 lat."],
+  ["ustroj-rp","Od ilu lat można głosować w wyborach w Polsce?","18 lat",["16 lat","17 lat","21 lat"],"Czynne prawo wyborcze przysługuje obywatelowi, który najpóźniej w dniu głosowania kończy 18 lat."],
+  ["ustroj-rp","Ilu podpisów potrzeba do obywatelskiego projektu ustawy?","100 000",["50 000","200 000","500 000"],"Obywatelską inicjatywę ustawodawczą może zgłosić grupa co najmniej 100 tys. obywateli."],
+  ["ustroj-rp","Ilu posłów musi podpisać wniosek o konstruktywne wotum nieufności dla rządu?","46",["15","69","115"],"Wniosek musi złożyć co najmniej 46 posłów i wskazać kandydata na nowego premiera."],
+  ["ustroj-rp","Ilu posłów musi podpisać wniosek o wotum nieufności wobec ministra?","69",["15","46","92"],"Wniosek wobec pojedynczego ministra składa co najmniej 69 posłów."],
+  ["ustroj-rp","Jaką większością Sejm odrzuca weto Prezydenta?","3/5 głosów",["1/2 głosów","2/3 głosów","3/4 głosów"],"Weto Sejm odrzuca większością 3/5 głosów w obecności co najmniej połowy posłów."],
+  ["ustroj-rp","Jaką większością Sejm uchwala zmianę Konstytucji?","2/3 głosów",["1/2 głosów","3/5 głosów","3/4 głosów"],"Zmiana Konstytucji wymaga w Sejmie 2/3 głosów, a w Senacie — bezwzględnej większości."],
+  ["ustroj-rp","Ile dni ma Senat na rozpatrzenie ustawy uchwalonej przez Sejm?","30 dni",["14 dni","21 dni","60 dni"],"Senat ma 30 dni; jeśli nie zajmie stanowiska, ustawę uważa się za przyjętą."],
+  ["ustroj-rp","Ile dni ma Prezydent na podpisanie ustawy?","21 dni",["7 dni","14 dni","30 dni"],"Prezydent ma 21 dni (przy budżecie i ustawach pilnych — 7 dni)."],
+  ["ustroj-rp","Jaka frekwencja jest potrzebna, by referendum ogólnokrajowe było wiążące?","ponad 50%",["ponad 30%","ponad 40%","ponad 60%"],"Wynik jest wiążący, jeśli w referendum weźmie udział ponad połowa uprawnionych."],
+  ["ustroj-rp","Ile województw jest w Polsce?","16",["14","17","49"],"Od reformy z 1999 r. Polska dzieli się na 16 województw (wcześniej było ich 49)."],
+  ["narod","Ile mniejszości narodowych uznaje polska ustawa?","9",["4","7","13"],"Ustawa wymienia 9 mniejszości narodowych i 4 etniczne."],
+  ["narod","Ile mniejszości etnicznych uznaje polska ustawa?","4",["2","6","9"],"Mniejszości etniczne to: karaimska, łemkowska, romska i tatarska."],
+  ["narod","Ile języków regionalnych uznaje polskie prawo?","1",["2","3","4"],"Jedynym językiem regionalnym jest kaszubski."],
+  ["narod","Jaki odsetek mieszkańców gminy musi stanowić mniejszość, by wprowadzić język pomocniczy?","20%",["10%","30%","50%"],"Język pomocniczy można wprowadzić, gdy mniejszość stanowi co najmniej 20% mieszkańców gminy."],
+  ["narod","Od ilu co najmniej lat przodkowie mniejszości muszą zamieszkiwać obecne terytorium Polski?","100 lat",["30 lat","50 lat","200 lat"],"To jeden z ustawowych warunków uznania grupy za mniejszość."],
+  ["polityka","Ilu obywateli musi poprzeć wniosek o rejestrację partii politycznej?","1000",["15","100","10 000"],"Wniosek o wpis partii do ewidencji musi poprzeć co najmniej 1000 pełnoletnich obywateli."],
+  ["polityka","Ilu członków liczy Krajowa Rada Radiofonii i Telewizji?","5",["3","7","9"],"Członków KRRiT wybierają: Sejm — 2, Senat — 1, Prezydent — 2."],
+  ["polityka","Jaki wynik w wyborach do Sejmu daje partii prawo do subwencji z budżetu?","3% głosów",["1% głosów","5% głosów","8% głosów"],"Subwencję otrzymuje partia, która zdobyła co najmniej 3% głosów (koalicja — 6%)."],
+  ["prawo","Od ilu lat co do zasady ponosi się odpowiedzialność karną?","17 lat",["13 lat","15 lat","18 lat"],"Zasadą jest 17 lat; za najcięższe czyny wyjątkowo od 15 lat."],
+  ["prawo","Od ilu lat wyjątkowo odpowiada się karnie za najcięższe przestępstwa (np. zabójstwo)?","15 lat",["13 lat","16 lat","17 lat"],"Sprawca, który ukończył 15 lat, może wyjątkowo odpowiadać jak dorosły za najcięższe czyny."],
+  ["prawo","Od ilu lat przysługuje pełna zdolność do czynności prawnych?","18 lat",["16 lat","17 lat","21 lat"],"Pełną zdolność uzyskuje się z pełnoletnością, czyli w wieku 18 lat (lub wcześniej przez małżeństwo)."],
+  ["prawo","Od ilu lat przysługuje ograniczona zdolność do czynności prawnych?","13 lat",["10 lat","15 lat","16 lat"],"Osoby w wieku 13–18 lat mają ograniczoną zdolność do czynności prawnych."],
+  ["prawo","Od jakiej kary zaczyna się zbrodnia?","3 lata więzienia",["1 rok więzienia","5 lat więzienia","8 lat więzienia"],"Zbrodnia to czyn zagrożony karą co najmniej 3 lat pozbawienia wolności; lżejsze czyny to występki."],
+  ["prawo","Ile dni ma obywatel na odwołanie od decyzji administracyjnej?","14 dni",["7 dni","21 dni","30 dni"],"Odwołanie wnosi się w ciągu 14 dni od doręczenia decyzji."],
+  ["prawo","Ile czasu ma obywatel na złożenie skargi do Europejskiego Trybunału Praw Człowieka?","4 miesiące",["1 miesiąc","6 miesięcy","12 miesięcy"],"Skargę składa się w ciągu 4 miesięcy od ostatecznego rozstrzygnięcia krajowego."],
+  ["prawo","W którym roku uchwalono Powszechną Deklarację Praw Człowieka?","1948",["1945","1950","1966"],"Zgromadzenie Ogólne ONZ przyjęło ją 10 grudnia 1948 r."],
+  ["prawo","W którym roku przyjęto Konwencję o prawach dziecka?","1989",["1959","1979","1990"],"Konwencję przyjęło ONZ w 1989 r. z inicjatywy Polski. W 1959 r. przyjęto niewiążącą Deklarację praw dziecka."],
+  ["ue","Ile państw należy do Unii Europejskiej?","27",["25","28","30"],"Od wystąpienia Wielkiej Brytanii w 2020 r. UE liczy 27 państw."],
+  ["ue","Ilu posłów liczy Parlament Europejski w kadencji 2024–2029?","720",["650","705","751"],"Parlament Europejski liczy 720 posłów."],
+  ["ue","Ilu posłów do Parlamentu Europejskiego wybiera Polska?","53",["46","51","60"],"W kadencji 2024–2029 Polska ma 53 eurodeputowanych."],
+  ["ue","Ile trwa kadencja Parlamentu Europejskiego?","5 lat",["4 lata","6 lat","2,5 roku"],"Wybory do PE odbywają się co 5 lat."],
+  ["ue","Ile trwa kadencja przewodniczącego Rady Europejskiej?","2,5 roku",["6 miesięcy","1 rok","5 lat"],"Przewodniczący jest wybierany na 2,5 roku i może być wybrany ponownie raz."],
+  ["ue","Jak długo państwo sprawuje prezydencję w Radzie UE?","6 miesięcy",["3 miesiące","1 rok","2,5 roku"],"Prezydencja zmienia się co pół roku."],
+  ["ue","Jak liczy się większość kwalifikowaną w Radzie UE?","55% państw i 65% ludności",["50% państw i 60% ludności","2/3 państw i 50% ludności","65% państw i 55% ludności"],"Potrzeba co najmniej 55% państw (15 z 27) reprezentujących co najmniej 65% ludności UE."],
+  ["ue","W którym roku podpisano traktaty rzymskie?","1957",["1951","1965","1979"],"Traktaty rzymskie powołujące EWG i Euratom podpisano w 1957 r."],
+  ["ue","W którym roku podpisano traktat z Maastricht?","1992",["1986","1997","2001"],"Traktat z Maastricht podpisano w 1992 r., a wszedł w życie w 1993 r."],
+  ["ue","W którym roku Polska wstąpiła do Unii Europejskiej?","2004",["2002","2003","2007"],"Polska jest członkiem UE od 1 maja 2004 r.; referendum odbyło się w 2003 r."],
+  ["ue","W którym roku Polska weszła do strefy Schengen?","2007",["2004","2009","2011"],"Polska jest w strefie Schengen od 21 grudnia 2007 r."],
+  ["ue","W którym roku wszedł w życie traktat lizboński?","2009",["2004","2007","2013"],"Traktat podpisano w 2007 r., a wszedł w życie 1 grudnia 2009 r."],
+  ["stosunki","Ilu członków liczy Rada Bezpieczeństwa ONZ?","15",["5","10","20"],"Rada Bezpieczeństwa liczy 15 członków: 5 stałych i 10 niestałych."],
+  ["stosunki","Ilu stałych członków ma Rada Bezpieczeństwa ONZ?","5",["3","7","10"],"Stali członkowie z prawem weta to USA, Rosja, Chiny, Wielka Brytania i Francja."],
+  ["stosunki","Na ile lat wybierany jest niestały członek Rady Bezpieczeństwa?","2 lata",["1 rok","3 lata","4 lata"],"Niestałych członków wybiera Zgromadzenie Ogólne na 2 lata."],
+  ["stosunki","Ile państw należy do ONZ?","193",["150","180","211"],"ONZ liczy 193 państwa członkowskie."],
+  ["stosunki","Ile państw należy do NATO?","32",["27","30","35"],"Po przyjęciu Finlandii (2023) i Szwecji (2024) NATO liczy 32 państwa."],
+  ["stosunki","W którym roku powstała ONZ?","1945",["1919","1949","1955"],"Karta Narodów Zjednoczonych weszła w życie w 1945 r. W 1919 r. powstała Liga Narodów."],
+  ["stosunki","W którym roku powstało NATO?","1949",["1945","1955","1999"],"Traktat waszyngtoński podpisano w 1949 r. W 1955 r. powstał Układ Warszawski."],
+  ["stosunki","W którym roku Polska wstąpiła do NATO?","1999",["1991","1997","2004"],"Polska jest w NATO od 12 marca 1999 r."],
+  ["stosunki","Ilu sędziów liczy Międzynarodowy Trybunał Sprawiedliwości?","15",["9","12","27"],"MTS w Hadze liczy 15 sędziów wybieranych na 9 lat."],
+  ["stosunki","Ile Celów Zrównoważonego Rozwoju zawiera Agenda 2030?","17",["8","10","25"],"Agenda 2030 z 2015 r. zawiera 17 celów. Wcześniejsze Milenijne Cele Rozwoju były 8."],
+  ["systemy-panstw","Ilu członków liczy amerykańska Izba Reprezentantów?","435",["100","450","538"],"Izba Reprezentantów liczy 435 członków wybieranych na 2 lata."],
+  ["systemy-panstw","Ilu senatorów liczy Senat USA?","100",["50","150","435"],"Każdy z 50 stanów wybiera 2 senatorów."],
+  ["systemy-panstw","Ilu elektorów liczy Kolegium Elektorów w USA?","538",["435","500","650"],"Kolegium liczy 538 elektorów; do zwycięstwa potrzeba 270 głosów."],
+  ["systemy-panstw","Ilu głosów elektorskich potrzeba do wyboru prezydenta USA?","270",["250","300","320"],"Potrzebna jest bezwzględna większość z 538, czyli 270 głosów."],
+  ["systemy-panstw","Ile trwa kadencja prezydenta USA?","4 lata",["2 lata","5 lat","6 lat"],"Prezydent USA jest wybierany na 4 lata, najwyżej dwa razy."],
+  ["systemy-panstw","Ile trwa kadencja członka Izby Reprezentantów USA?","2 lata",["1 rok","4 lata","6 lat"],"Członków Izby wybiera się co 2 lata."],
+  ["systemy-panstw","Ile trwa kadencja senatora USA?","6 lat",["2 lata","4 lata","5 lat"],"Senatorowie są wybierani na 6 lat; co 2 lata wymienia się 1/3 Senatu."],
+  ["systemy-panstw","Ilu sędziów liczy Sąd Najwyższy USA?","9",["7","12","15"],"Sąd Najwyższy USA liczy 9 sędziów powoływanych dożywotnio."],
+  ["systemy-panstw","Ilu posłów liczy brytyjska Izba Gmin?","650",["435","460","577"],"Izba Gmin liczy 650 posłów wybieranych w okręgach jednomandatowych."],
+  ["systemy-panstw","Ile trwa kadencja prezydenta Francji?","5 lat",["4 lata","6 lat","7 lat"],"Od 2002 r. prezydent Francji jest wybierany na 5 lat (wcześniej na 7)."],
+  ["systemy-panstw","Z ilu krajów związkowych składają się Niemcy?","16",["12","26","50"],"Niemcy to federacja 16 krajów związkowych."],
+  ["systemy-panstw","Ile trwa kadencja prezydenta Rosji?","6 lat",["4 lata","5 lat","7 lat"],"Od 2012 r. prezydent Rosji jest wybierany na 6 lat."],
+  ["systemy-panstw","Ilu członków liczy szwajcarska Rada Federalna?","7",["5","9","26"],"Rząd Szwajcarii to kolegialna Rada Federalna złożona z 7 członków."],
+  ["systemy-panstw","Z ilu kantonów składa się Szwajcaria?","26",["16","20","50"],"Szwajcaria to federacja 26 kantonów."],
+  ["systemy-panstw","Ilu podpisów potrzeba w Szwajcarii do inicjatywy ludowej (zmiana konstytucji)?","100 000",["10 000","50 000","500 000"],"Inicjatywa ludowa wymaga 100 tys. podpisów, a referendum nad ustawą — 50 tys."],
+  ["systemy-panstw","Ile trwa kadencja prezydenta Włoch?","7 lat",["4 lata","5 lat","9 lat"],"Prezydent Włoch jest wybierany przez parlament na 7 lat."]
+];
+
 const ORG_TYPY = ["uniwersalna", "polityczno-wojskowa", "europejska", "gospodarcza", "regionalna", "nieformalna"];
 
 const ORG = [
@@ -1681,9 +1761,9 @@ const G = {
     return pick(items,10).map(([c,o])=>mcq(`Której organizacji dotyczy ta informacja? „${c}”`, o.skr+" — "+o.n, names, `To ${o.n} (${o.skr}).`, "Organizacje"));
   },
   liczby(dz){
-    const all=[]; DZIALY.forEach(d=>(d.numbers||[]).forEach(n=>all.push({l:n.label,v:String(n.value),g:d.name,id:d.id})));
-    const items=all.filter(x=>inDz(dz,x.id));
-    return pick(items,10).map(it=>{ const same=all.filter(x=>x.g===it.g).map(x=>x.v); const pool=same.length>=4?same:all.map(x=>x.v); return mcq(`${it.l}?`, it.v, pool, `${it.l}: ${it.v}.`, it.g); });
+    const items=LICZBY_Q.filter(x=>inDz(dz,x[0]));
+    const dn=id=>(DZIALY.find(d=>d.id===id)||{}).name||"";
+    return pick(items,10).map(([d,q,c,w,e])=>mcq(q, c, w, e, dn(d)));
   },
   tf(dz){
     const st=[];
@@ -1704,7 +1784,7 @@ const MODE_DZ = { organ:["ustroj-rp"], panstwo:["systemy-panstw"], ideologia:["p
 function modeCount(id, dz){
   if(MODE_DZ[id]) return dz==="all"||MODE_DZ[id].includes(dz) ? 1 : 0;
   if(id==="quiz") return DZIALY.filter(d=>inDz(dz,d.id)).reduce((s,d)=>s+(d.quiz||[]).length,0);
-  if(id==="liczby") return DZIALY.filter(d=>inDz(dz,d.id)).reduce((s,d)=>s+(d.numbers||[]).length,0) >= 4 ? 1 : 0;
+  if(id==="liczby") return LICZBY_Q.filter(x=>inDz(dz,x[0])).length;
   if(id==="kazusy") return DZIALY.filter(d=>inDz(dz,d.id)).reduce((s,d)=>s+(d.cases||[]).length,0);
   if(id==="fiszki") return pojDz(dz).length;
   if(id==="dopasuj") return pojDz(dz).length>=5 ? 1 : 0;

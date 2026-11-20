@@ -1035,6 +1035,7 @@ th{color:var(--mod)}
 .tm-gos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:14px}.tm-gos .tm-go{margin:0}
 .tm-dzgos{margin:0 0 14px}.tm-dzgos .tm-go{padding:16px 20px}.tm-dzgos .tm-go b{font-size:21px}.tm-dzgos .tm-go .i{font-size:32px}
 @media (max-width:600px){.tm-dzgos{gap:8px}.tm-dzgos .tm-go{padding:12px 16px;gap:12px}.tm-dzgos .tm-go b{font-size:18px}.tm-dzgos .tm-go .tx span{display:none}.tm-dzgos .tm-go .i{font-size:24px}.tm-dzgos .tm-go .ar{font-size:22px}}
+.tm-dzmod{margin-bottom:12px}@media (max-width:600px){.tm-dzmod{padding:14px 16px;gap:12px}.tm-dzmod b{font-size:19px}.tm-dzmod .tx span{font-size:13.5px}.tm-dzmod .i{font-size:28px}}
 </style>
 </head>
 <body>
@@ -2821,6 +2822,7 @@ const pa = (k,t) => L_("Ustroje państw", t, "panstwa", {panstwaTab:"panstwa", p
 const sw = (k,t,w) => L_("Świat po 1945", t, "swiat", w?{tab:k, woj:w}:{tab:k});
 const pl_ = (k,t) => L_("Polska po 1945", t, "polska", {tab:k});
 const MAP_GO = {"ue": ["Unia Europejska", "Kto i kiedy przystąpił do Unii — kolejne rozszerzenia na mapie Europy."], "schengen": ["Strefa Schengen", "Państwa bez kontroli na granicach wewnętrznych."], "euro": ["Strefa euro", "Państwa, w których płaci się euro."], "nato": ["NATO", "Państwa członkowskie i kolejne rozszerzenia sojuszu."], "zimna": ["Zimna wojna", "Podział Europy na blok zachodni i wschodni."], "konflikty": ["Konflikty i punkty zapalne", "Gdzie dziś toczą się wojny i trwają napięcia."], "woj": ["Województwa", "16 województw i ich stolice."], "mniej": ["Mniejszości narodowe i etniczne", "Zobacz, gdzie mieszkają poszczególne mniejszości i gdzie ich język jest pomocniczy."]};
+const DZ_MOD = {"ustroj-rp":["ustroj","🏛️","Przejdź do modułu Ustrój RP","Bardziej szczegółowe zagadnienia: zasady Konstytucji, organy władzy, ustawa krok po kroku, wybory, samorząd, większości i stany nadzwyczajne."], "ue":["unia","🇪🇺","Przejdź do modułu Unia Europejska","Bardziej szczegółowe zagadnienia: historia integracji, instytucje, prawo UE, jak powstaje prawo, swobody i polityki, Polska w UE."]};
 function mapGos(keys){ return `<div class="tm-gos tm-dzgos">${keys.map(k=>{ const g=MAP_GO[k]||[k,""]; return `<button class="tm-go mod-go" data-mapa="${k}" style="--c:var(--mod,#0f7f8c)"><span class="i">🗺️</span><span class="tx"><b>Mapa: ${esc(g[0])}</b><span>${esc(g[1])}</span></span><span class="ar">→</span></button>`; }).join("")}</div>`; }
 document.addEventListener("click",e=>{ const b=e.target.closest(".mod-go"); if(b) jump("mapy",{mapa:b.dataset.mapa}); });
 const TOPIC_LINKS = {
@@ -3114,10 +3116,12 @@ R.tematy = m => {
     const avail = DTABS.filter(([k])=>k in SPEC ? SPEC[k]>=3 : (d[k]||[]).length);
     wrap.innerHTML = `<button class="tm-back">← Wszystkie działy</button>
       <div class="tm-hero" style="--c:${c}"><span class="tm-wm" aria-hidden="true">${esc(d.number)}</span><span class="tm-ey">Dział ${esc(d.number)} · ${d.id==="systemy-panstw"?PANSTWA.length+" państw":d.topics.length+" tematów"}</span><h1>${esc(d.name)}</h1><p>${esc(d.blurb)}</p></div>
+      ${DZ_MOD[d.id]?`<button class="tm-go tm-dzmod" style="--c:${c}"><span class="i">${DZ_MOD[d.id][1]}</span><span class="tx"><b>${DZ_MOD[d.id][2]}</b><span>${DZ_MOD[d.id][3]}</span></span><span class="ar">→</span></button>`:""}
       ${dzGos.length?`<div class="tm-gos tm-dzgos">${dzGos.map((g,k)=>`<button class="tm-go tm-golink" data-k="${k}" style="--c:${c}"><span class="i">🗺️</span><span class="tx"><b>Mapa: ${esc(g[0])}</b><span>${esc(g[1])}</span></span><span class="ar">→</span></button>`).join("")}</div>`:""}
       <div class="subnav tm-sub" role="tablist" style="--mod:${c}">${avail.map(([k,l])=>`<button role="tab" data-k="${k}" aria-selected="false">${k==="topics"&&d.id==="systemy-panstw"?"Państwa":l} <span class="count">${k==="topics"&&d.id==="systemy-panstw"?PANSTWA.length:k in SPEC?SPEC[k]:d[k].length}</span></button>`).join("")}</div>
       <div class="dt"></div>
       ${tasksHTML(d.id,["quiz",...(FOOT_MODES[d.id]||[]),"kazusy","fiszki"],"Zadania z tego działu")}`;
+    { const mb=wrap.querySelector(".tm-dzmod"); if(mb) mb.addEventListener("click",()=>go(DZ_MOD[d.id][0])); }
     wrap.querySelectorAll(".tm-dzgos .tm-golink").forEach(b=>b.addEventListener("click",()=>jump("mapy",{mapa:dzKeys[+b.dataset.k]})));
     wrap.querySelector(".tm-back").addEventListener("click",()=>{ home(); top(); });
     const dt=$(".dt",wrap), sub=$(".subnav",wrap);
